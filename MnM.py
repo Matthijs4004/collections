@@ -1,37 +1,47 @@
+from random import choice
 import random
 
 #Deel 1: Lists
 
-mnmList = ["groen", "oranje", "blauw", "bruin"]
+colors = ["groen", "oranje", "blauw", "bruin"]
 
 print("Hoeveel kleuren m&m's wil je aan de zak toevoegen?")
 aantal = int(input("> "))
 
-def listZak(x):
-  print(random.choices(mnmList, k=x))
 
-listZak(aantal)
+def listZak(aantal: int):
+    colors_bag = []
+    for i in range(aantal):
+        color = choice(colors)
+        colors_bag.append(color)
+    else:
+        return colors_bag
+
 
 # Deel 2: Dictionary
 
 mnmDict = {}
 
-def dictZak(aantal:int): #function met parameter -> int
+def dictZak(aantal:int): 
   for i in range(aantal): 
-    mnmColor = random.randint(0,3) #random number generator tussen 0-3
-    if not mnmList[mnmColor] in mnmDict: #mnmcolor geeft een nummber tussen 0-3 en die wordt gecheckt door de list, als die niet in de dict zit wordt die toegevoegd zo niet dat wordt er wat bij gedaan
-      mnmDict[mnmList[mnmColor]] = 1
+    mnmColor = random.randint(0,3) 
+    if not colors[mnmColor] in mnmDict:
+      mnmDict[colors[mnmColor]] = 1
     else:
-      mnmDict[mnmList[mnmColor]] += 1
-  return mnmDict #return de mnmdict zodat hij de juiste output geeft en niet 'none'
+      mnmDict[colors[mnmColor]] += 1
+  return mnmDict 
 
-print(dictZak(aantal))
 
 # Deel 3: sorteren
 
-def mnmSort(sorteer):
-    print(sorteer)
+def mnmSort(mnmList, colors):
+    if isinstance(mnmList, list):
+        nieuweZak = sorted(mnmList)
+    else:
+        nieuweZak = {}
+        for color in mnmList:            
+            nieuweZak[color] = mnmList[color]
+    return nieuweZak
 
-
-
-mnmSort(dictZak(aantal))
+print(mnmSort(listZak(aantal), colors))
+print(mnmSort(dictZak(aantal), colors))

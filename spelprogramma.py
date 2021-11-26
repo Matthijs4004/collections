@@ -6,4 +6,4 @@ def spelProgramma(spelList, minimum, maximum):
     number = random.randrange(minimum,maximum)
     print(random.choices(spelList, k = number))
 
-spelProgramma(spelList,3,11)
+spelProgramma(spelList,3,10)
